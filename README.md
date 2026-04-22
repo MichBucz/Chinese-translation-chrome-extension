@@ -1,0 +1,1 @@
+# Chinese-translation-chrome-extension
