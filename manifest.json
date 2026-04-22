@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Chinese Text Translator",
+  "version": "1.0",
+  "description": "Translates Chinese text to Polish on hover using Claude AI",
+  "permissions": ["storage"],
+  "host_permissions": ["https://api.mymemory.translated.net/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Chinese Translator – Settings"
+  }
+}

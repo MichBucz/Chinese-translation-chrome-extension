@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Chinese Translator – Ustawienia</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 320px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      background: #0f0f1a;
+      color: #d8d8ec;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #a8a8ff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h1 span.icon { font-size: 18px; }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #8888bb;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 10px;
+      background: #1a1a2e;
+      border: 1px solid #3a3a6a;
+      border-radius: 6px;
+      color: #e8e8ff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    input:focus { border-color: #6666cc; }
+
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 9px;
+      background: #4444aa;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    button:hover { background: #5555cc; }
+    button:active { background: #3333aa; }
+
+    #status {
+      margin-top: 12px;
+      min-height: 18px;
+      font-size: 12px;
+      text-align: center;
+      color: #55cc88;
+    }
+
+    #status.error { color: #cc5555; }
+
+    .badge {
+      display: inline-block;
+      background: #1e3a1e;
+      color: #55cc77;
+      border: 1px solid #2a5a2a;
+      border-radius: 4px;
+      font-size: 11px;
+      padding: 2px 7px;
+      margin-bottom: 14px;
+    }
+
+    .info {
+      margin-top: 18px;
+      padding: 10px;
+      background: #12122a;
+      border: 1px solid #2a2a55;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #7777aa;
+      line-height: 1.6;
+    }
+
+    .info strong { color: #9999cc; }
+
+    .usage-box {
+      margin-top: 18px;
+      padding: 10px 12px;
+      background: #12122a;
+      border: 1px solid #2a2a55;
+      border-radius: 6px;
+    }
+
+    .usage-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #8888bb;
+      margin-bottom: 8px;
+    }
+
+    #usageCount { color: #a8a8ff; }
+
+    .usage-bar-bg {
+      height: 6px;
+      background: #2a2a4a;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .usage-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #5555cc;
+      border-radius: 3px;
+      transition: width .3s;
+    }
+
+    .usage-bar-fill.warn  { background: #cc9933; }
+    .usage-bar-fill.full  { background: #cc4444; }
+
+    .usage-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #7777aa;
+    }
+  </style>
+</head>
+<body>
+  <h1><span class="icon">🀄</span> Chinese Translator</h1>
+
+  <div class="badge">✓ Działa bez rejestracji</div>
+
+  <label for="email">E-mail (opcjonalnie)</label>
+  <input type="email" id="email" placeholder="twoj@email.com" autocomplete="off">
+
+  <button id="saveBtn">Zapisz</button>
+  <div id="status"></div>
+
+  <div class="info">
+    <strong>Jak używać:</strong><br>
+    Najedź kursorem na chiński tekst i przytrzymaj 1,5 sekundy – pojawi się tłumaczenie na polski.<br><br>
+    <strong>Bez e-maila:</strong> 1 000 słów/dzień<br>
+    <strong>Z e-mailem:</strong> 10 000 słów/dzień<br><br>
+    E-mail służy tylko do zwiększenia limitu — nie wymaga rejestracji.
+  </div>
+
+  <div class="usage-box">
+    <div class="usage-header">
+      <span>Użycie dzisiaj</span>
+      <span id="usageCount">—</span>
+    </div>
+    <div class="usage-bar-bg">
+      <div class="usage-bar-fill" id="usageBar"></div>
+    </div>
+    <div class="usage-footer">
+      <span id="usageChars">0 znaków</span>
+      <span id="usageLimit"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
